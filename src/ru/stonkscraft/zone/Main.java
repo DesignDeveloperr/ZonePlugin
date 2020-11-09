@@ -39,7 +39,6 @@ public class Main extends JavaPlugin {
             int one_zone_z = player.getLocation().getChunk().getZ() * 16 - 16;
             int two_zone_x = player.getLocation().getChunk().getX() * 16 + 31;
             int two_zone_z = player.getLocation().getChunk().getZ() * 16 + 31;
-            sender.sendMessage(Integer.toString(player.getLocation().getChunk().getX() * 16) + ";" + Integer.toString(player.getLocation().getChunk().getZ() * 16));
             World world = player.getWorld();
             Location one_location = new Location(world, one_zone_x, 0, one_zone_z);
             Location two_location = new Location(world, two_zone_x, 255, two_zone_z);
