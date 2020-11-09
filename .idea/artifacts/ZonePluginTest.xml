@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ZonePluginTest">
+    <output-path>$PROJECT_DIR$/../TestSever/plugins</output-path>
+    <root id="archive" name="ZonePlugin.jar">
+      <element id="module-output" name="ZonePlugin" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>

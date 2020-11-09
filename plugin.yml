@@ -2,5 +2,5 @@ name: zone
 main: ru.stonkscraft.zone.Main
 version: 1.0
 commands:
-  zone:
-    usage: /zone
+  /zone:
+    usage: //zone
