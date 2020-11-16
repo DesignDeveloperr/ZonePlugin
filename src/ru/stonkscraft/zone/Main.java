@@ -47,7 +47,7 @@ public class Main extends JavaPlugin {
         return count == 0 ? player.getName() : player.getName() + "_" + (count + 1);
     }
 
-    public void createRegion(Player player, int x1, int z1, int x2, int z2) {
+    public void createRegion(Player player, int x1, int z1, int x2, int z2, Location one, Location two) {
         BlockVector vector1 = new BlockVector(x1, 0, z1);
         BlockVector vector2 = new BlockVector(x2, 255, z2);
         String name = getRegionName(player);
@@ -58,6 +58,7 @@ public class Main extends JavaPlugin {
             DefaultDomain owner = new DefaultDomain();
             owner.addPlayer(player.getName());
             Objects.requireNonNull(getWorldGuard().getRegionManager(world).getRegion(name)).setOwners(owner);
+            getWorldEdit().setSelection(player, new CuboidSelection(world, one, two));
             player.sendMessage(ChatColor.GREEN + "Регион создан");
         } else {
             player.sendMessage(ChatColor.RED + "Регионы пересекаются");
@@ -87,9 +88,8 @@ public class Main extends JavaPlugin {
             World world = player.getWorld();
             Location one_location = new Location(world, one_zone_x, 0, one_zone_z);
             Location two_location = new Location(world, two_zone_x, 255, two_zone_z);
-            getWorldEdit().setSelection(player, new CuboidSelection(world, one_location, two_location));
             if (getWorldGuard().getRegionManager(player.getWorld()).getRegionCountOfPlayer(WorldGuardPlugin.inst().wrapPlayer(player)) < getMaxRegions(player))
-                createRegion(player, one_zone_x, one_zone_z, two_zone_x, two_zone_z);
+                createRegion(player, one_zone_x, one_zone_z, two_zone_x, two_zone_z, one_location, two_location);
             else
                 sender.sendMessage(ChatColor.RED + "Достигнуто максимальное количество приватов");
             return true;
