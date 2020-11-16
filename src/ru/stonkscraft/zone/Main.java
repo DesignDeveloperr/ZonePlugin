@@ -5,7 +5,6 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.domains.DefaultDomain;
-import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,7 +15,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -81,7 +79,7 @@ public class Main extends JavaPlugin {
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (cmd.getName().equalsIgnoreCase("/zone")) {
-            Player player = Bukkit.getPlayer(sender.getName());
+            Player player = (Player) sender;
             int one_zone_x = player.getLocation().getChunk().getX() * 16 - 16;
             int one_zone_z = player.getLocation().getChunk().getZ() * 16 - 16;
             int two_zone_x = player.getLocation().getChunk().getX() * 16 + 31;
@@ -96,7 +94,6 @@ public class Main extends JavaPlugin {
                 sender.sendMessage(ChatColor.RED + "Достигнуто максимальное количество приватов");
             return true;
         }
-
         return false;
     }
 }
